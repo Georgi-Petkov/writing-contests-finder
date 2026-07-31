@@ -1,0 +1,943 @@
+<meta charset="utf-8">
+<script>document.documentElement.setAttribute('data-site-theme', localStorage.getItem('wcf-theme') || 'classic');</script>
+<title>Writing Contest Tracker — EN &amp; BG</title>
+<style>
+  :root[data-site-theme="classic"] {
+    --paper: #eef2f7;
+    --paper-raised: #ffffff;
+    --ink: #16283f;
+    --ink-soft: #2c435f;
+    --muted2: #6b7e94;
+    --line: #c4d2e0;
+    --line-strong: #3a78b5;
+    --accent: #d9642c;
+    --accent-ink: #ffffff;
+    --ok: #3f8f5f;
+    --ok-bg: #e4f2e9;
+    --warn: #a5471b;
+    --warn-bg: #f7e6dd;
+    --shadow: drop-shadow(0 1px 2px rgba(22, 40, 63, 0.12));
+    --font-display: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
+    --font-body: Charter, "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
+    --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo, Consolas, monospace;
+    --card-bg-image: none;
+    --card-pad-left: 22px;
+    --card-clip: none;
+    --card-radius: 6px;
+    --panel-clip: none;
+    --panel-radius: 6px;
+    --badge-radius: 20px;
+    --body-bg:
+      linear-gradient(rgba(58, 120, 181, 0.10) 1px, transparent 1px) 0 0 / 28px 28px,
+      linear-gradient(90deg, rgba(58, 120, 181, 0.10) 1px, transparent 1px) 0 0 / 28px 28px,
+      #eef2f7;
+  }
+
+  :root[data-site-theme="notebook"] {
+    --paper: #fbfaf7;
+    --paper-raised: #ffffff;
+    --ink: #1f2328;
+    --ink-soft: #3c4147;
+    --muted2: #7c828a;
+    --line: #dcdfe3;
+    --line-strong: #2f5f8f;
+    --accent: #c0392b;
+    --accent-ink: #ffffff;
+    --ok: #2e7d4f;
+    --ok-bg: #e6f4ec;
+    --warn: #b23b1f;
+    --warn-bg: #fbe9e3;
+    --shadow: drop-shadow(0 1px 3px rgba(20, 20, 20, 0.12));
+    --font-display: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --font-body: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --card-bg-image:
+      linear-gradient(to right, transparent 0 39px, var(--accent) 39px 40px, transparent 40px 100%),
+      repeating-linear-gradient(to bottom, transparent 0 25px, var(--line) 25px 26px);
+    --card-pad-left: 52px;
+    --card-clip: none;
+    --card-radius: 4px;
+    --panel-clip: none;
+    --panel-radius: 4px;
+    --badge-radius: 6px;
+    --body-bg: #fbfaf7;
+  }
+
+  :root[data-site-theme="vintage"] {
+    --paper: #f4efe0;
+    --paper-raised: #faf6ea;
+    --ink: #3b3226;
+    --ink-soft: #5c5140;
+    --muted2: #93876c;
+    --line: #ddd2b8;
+    --line-strong: #a3936c;
+    --accent: #a67c3d;
+    --accent-ink: #faf6ea;
+    --ok: #5b7a52;
+    --ok-bg: rgba(91, 122, 82, 0.14);
+    --warn: #9c5a3c;
+    --warn-bg: rgba(156, 90, 60, 0.14);
+    --shadow: drop-shadow(0 2px 3px rgba(70, 58, 34, 0.22));
+    --font-display: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --font-body: "Courier New", Courier, "Nimbus Mono PS", monospace;
+    --font-mono: "Courier New", Courier, "Nimbus Mono PS", monospace;
+    --card-bg-image: repeating-linear-gradient(to bottom, transparent 0 27px, rgba(90, 70, 40, 0.14) 27px 28px);
+    --card-pad-left: 22px;
+    --card-clip: polygon(
+      0% 0%, 100% 0%, 100% 92%, 95% 97%, 90% 91%, 85% 97%, 80% 91%,
+      75% 97%, 70% 91%, 65% 97%, 60% 91%, 55% 97%, 50% 91%, 45% 97%,
+      40% 91%, 35% 97%, 30% 91%, 25% 97%, 20% 91%, 15% 97%, 10% 91%,
+      5% 97%, 0% 91%
+    );
+    --card-radius: 0px;
+    --panel-clip: polygon(
+      0% 0%, 100% 0%, 100% 93%, 95% 98%, 90% 92%, 85% 98%, 80% 92%,
+      75% 98%, 70% 92%, 65% 98%, 60% 92%, 55% 98%, 50% 92%, 45% 98%,
+      40% 92%, 35% 98%, 30% 92%, 25% 98%, 20% 92%, 15% 98%, 10% 92%,
+      5% 98%, 0% 92%
+    );
+    --panel-radius: 0px;
+    --badge-radius: 3px;
+    --body-bg:
+      radial-gradient(ellipse 500px 380px at 12% 8%, rgba(122, 98, 52, 0.18), transparent 60%),
+      radial-gradient(ellipse 420px 340px at 92% 82%, rgba(122, 98, 52, 0.18), transparent 60%),
+      radial-gradient(ellipse 300px 300px at 70% 15%, rgba(122, 98, 52, 0.14), transparent 65%),
+      #f4efe0;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--body-bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    padding: 40px 20px 100px;
+  }
+
+  .sheet {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .mono {
+    font-family: var(--font-mono);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted2);
+  }
+
+  .quill-icon {
+    color: var(--accent);
+    vertical-align: -5px;
+    margin-right: 6px;
+    flex-shrink: 0;
+  }
+
+  /* ---- Theme switcher ---- */
+  .theme-switcher {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .theme-switcher button {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    font-size: 11.5px;
+    letter-spacing: 0.05em;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--ink-soft);
+    cursor: pointer;
+  }
+  .theme-switcher button.active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper-raised);
+  }
+
+  /* ---- Title block ---- */
+  .titleblock {
+    position: relative;
+    border: 1px solid var(--line);
+    border-radius: var(--panel-radius);
+    background: var(--paper-raised);
+    filter: var(--shadow);
+    margin-bottom: 28px;
+    clip-path: var(--panel-clip);
+  }
+  .titleblock-main {
+    padding: 22px 26px 26px;
+  }
+  .titleblock-main h1 {
+    margin: 6px 0 8px;
+    font-family: var(--font-display);
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  .titleblock-main p {
+    margin: 0;
+    color: var(--ink-soft);
+    max-width: 68ch;
+  }
+  .last-updated {
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: var(--muted2);
+  }
+
+  /* ---- Controls ---- */
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: var(--radius, 4px);
+    background: var(--paper-raised);
+    filter: var(--shadow);
+    padding: 14px 18px;
+    margin-bottom: 22px;
+  }
+  .control-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .control-group .eyebrow { margin-right: 2px; }
+  .control-group button {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--ink-soft);
+    cursor: pointer;
+  }
+  .control-group button.active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper-raised);
+  }
+  #result-count {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted2);
+  }
+
+  /* ---- Cards ---- */
+  .contests {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .contest-card {
+    position: relative;
+    background-color: var(--paper-raised);
+    background-image: var(--card-bg-image);
+    border: 1px solid var(--line);
+    border-radius: var(--card-radius);
+    padding: 18px 22px 22px var(--card-pad-left);
+    filter: var(--shadow);
+    clip-path: var(--card-clip);
+  }
+  .contest-card.is-closed { opacity: 0.6; }
+  .contest-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .contest-top h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .contest-top h2 a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+  .badge {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: var(--badge-radius);
+    border: 1px solid currentColor;
+    background: transparent;
+    color: var(--muted2);
+    white-space: nowrap;
+    display: inline-block;
+  }
+  .badge.lang { color: var(--line-strong); }
+  .badge.status-open, .badge.reprint-yes { color: var(--ok); background: var(--ok-bg); border-color: transparent; }
+  .badge.status-upcoming { color: var(--line-strong); }
+  .badge.status-closed { color: var(--muted2); }
+  .badge.reprint-no { color: var(--warn); background: var(--warn-bg); border-color: transparent; }
+  .badge.reprint-unclear { color: var(--muted2); }
+
+  /* Ink-stamp treatment: vintage theme only */
+  [data-site-theme="vintage"] .badge { border-width: 2px; }
+  [data-site-theme="vintage"] .badge:nth-child(1) { transform: rotate(-2deg); }
+  [data-site-theme="vintage"] .badge:nth-child(2) { transform: rotate(1.5deg); }
+  [data-site-theme="vintage"] .badge:nth-child(3) { transform: rotate(-1deg); }
+
+  .contest-meta {
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px 20px;
+  }
+  .meta-item .eyebrow { display: block; margin-bottom: 2px; }
+  .meta-item .val { font-size: 14px; color: var(--ink-soft); }
+
+  .reprint-note {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .reprint-note strong { color: var(--ink); }
+
+  .contest-actions {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line-strong);
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .action-link {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 5px 12px;
+    border-radius: var(--badge-radius);
+    border: 1px solid var(--line-strong);
+    color: var(--line-strong);
+    text-decoration: none;
+    background: transparent;
+  }
+  .action-link:hover { background: var(--line-strong); color: var(--paper-raised); }
+
+  footer {
+    max-width: 1080px;
+    margin: 36px auto 0;
+    padding-top: 16px;
+    border-top: 1px dashed var(--line-strong);
+    color: var(--muted2);
+    font-size: 12.5px;
+  }
+  footer a { color: var(--line-strong); }
+
+  .empty-state {
+    text-align: center;
+    padding: 40px 0;
+    color: var(--muted2);
+  }
+</style>
+
+<div class="sheet">
+
+  <div class="theme-switcher" role="group" aria-label="Visual theme">
+    <span class="eyebrow">Look</span>
+    <button type="button" data-theme-value="classic">Classic</button>
+    <button type="button" data-theme-value="notebook">Notebook</button>
+    <button type="button" data-theme-value="vintage">Vintage</button>
+  </div>
+
+  <div class="titleblock">
+    <div class="titleblock-main">
+      <span class="eyebrow">Writing contest tracker</span>
+      <h1>
+        <svg class="quill-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 4c-4 0-9 2-12 6-2 2.5-3 5-3 8l3-1c1-3 2.5-5.5 5-7.5C16 6.5 20 5 20 4z"/>
+          <path d="M14 10 5 19"/>
+          <path d="M5 19l-1 3 3-1"/>
+        </svg>
+        Inspirational writing contests — English &amp; Bulgarian
+      </h1>
+      <p>A quick-scan list of open and upcoming contests for inspirational/motivational essays, personal narrative, poetry, and open-theme literary work. Click a contest to read the full rules before submitting.</p>
+      <p class="last-updated mono" id="last-updated"></p>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="control-group" data-filter-group="language">
+      <span class="eyebrow">Language</span>
+      <button data-value="all" class="active">All</button>
+      <button data-value="EN">English</button>
+      <button data-value="BG">Bulgarian</button>
+    </div>
+    <div class="control-group" data-filter-group="status">
+      <span class="eyebrow">Status</span>
+      <button data-value="all" class="active">All</button>
+      <button data-value="open">Open</button>
+      <button data-value="upcoming">Upcoming</button>
+      <button data-value="closed">Closed</button>
+    </div>
+    <div class="control-group" data-filter-group="fee">
+      <span class="eyebrow">Fee</span>
+      <button data-value="all" class="active">All</button>
+      <button data-value="free">Free only</button>
+    </div>
+    <span id="result-count" class="mono"></span>
+  </div>
+
+  <div class="contests" id="contest-list"></div>
+  <div class="empty-state" id="empty-state" style="display:none">No contests match these filters.</div>
+
+  <footer>
+    Sources compiled from public contest aggregators and organizer pages &mdash; always confirm dates, prize, and reuse rules on the official contest page before submitting.
+    Refreshed automatically. Repo: <a href="https://github.com/Georgi-Petkov/writing-contests-finder" target="_blank" rel="noopener">writing-contests-finder</a>.
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var KEY = 'wcf-theme';
+  var root = document.documentElement;
+  var current = root.getAttribute('data-site-theme') || 'classic';
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('.theme-switcher button'));
+  buttons.forEach(function (btn) {
+    btn.classList.toggle('active', btn.getAttribute('data-theme-value') === current);
+    btn.addEventListener('click', function () {
+      var val = btn.getAttribute('data-theme-value');
+      root.setAttribute('data-site-theme', val);
+      localStorage.setItem(KEY, val);
+      buttons.forEach(function (b) { b.classList.toggle('active', b === btn); });
+    });
+  });
+})();
+</script>
+
+<script type="application/json" id="contest-data">
+{
+  "generated_at": "2026-07-31",
+  "contests": [
+    {
+      "id": "wow-women-on-writing-cnf-essay",
+      "name": "WOW! Women on Writing — Creative Nonfiction Essay Contest",
+      "url": "https://www.wow-womenonwriting.com/contest.php#EssayContest",
+      "language": "EN",
+      "topic": "Personal essay / memoir on any real-life topic — \"truthful, literary, and original\"",
+      "prize": "$500 top prize + publication + interview on the WOW! blog",
+      "format": "200–1,000 words, English, online submission",
+      "opens": "Quarterly rounds",
+      "deadline": "~Sep 30, 2026 (Q3 2026 round — confirm exact date on site)",
+      "reprint_policy": "no",
+      "reprint_note": "Must be previously unpublished and original.",
+      "fee_free": false,
+      "fee_amount": "$12 entry (or $25 with editorial critique)",
+      "status": "open"
+    },
+    {
+      "id": "wild-muse-nature-writing-prize",
+      "name": "Wild Muse Nature Writing Prize",
+      "url": "https://gabrielablandy.org/nature-writing-prize",
+      "language": "EN",
+      "topic": "Personal stories, poems, or essays on \"Nature's Wisdom and Healing\" — our relationship with the living world",
+      "prize": "£750 / £300 / £150 (1st / 2nd / 3rd)",
+      "format": "Not fully specified in listing — check official page for word count/format",
+      "opens": null,
+      "deadline": "2026-09-14",
+      "reprint_policy": "unclear",
+      "reprint_note": "Not stated in the available listing — verify on the official page before assuming either way.",
+      "fee_free": false,
+      "fee_amount": "$10",
+      "status": "open"
+    },
+    {
+      "id": "north-street-book-prize",
+      "name": "North Street Book Prize (Winning Writers)",
+      "url": "https://winningwriters.com/our-contests/north-street-book-prize",
+      "language": "EN",
+      "topic": "Book-length work; categories include Inspirational/Self-Help and Creative Nonfiction & Memoir",
+      "prize": "$23,500 total across categories",
+      "format": "Self-published or hybrid-published books",
+      "opens": null,
+      "deadline": "2026-07-01",
+      "reprint_policy": "yes",
+      "reprint_note": "This one is specifically FOR previously published (self-published/hybrid) books — not a reuse allowance for unpublished writers.",
+      "fee_free": false,
+      "fee_amount": "$95",
+      "status": "closed"
+    },
+    {
+      "id": "tom-howard-margaret-reid-poetry",
+      "name": "Tom Howard/Margaret Reid Poetry Contest (Winning Writers)",
+      "url": "https://winningwriters.com/our-contests/tom-howard-margaret-reid-poetry-contest",
+      "language": "EN",
+      "topic": "Poetry, any style or theme",
+      "prize": "$12,000 total",
+      "format": "Poetry submissions",
+      "opens": null,
+      "deadline": "2026-10-01",
+      "reprint_policy": "yes",
+      "reprint_note": "Accepts both previously published and unpublished poems.",
+      "fee_free": null,
+      "fee_amount": null,
+      "status": "open"
+    },
+    {
+      "id": "tom-howard-john-h-reid-fiction-essay",
+      "name": "Tom Howard/John H. Reid Fiction & Essay Contest (Winning Writers)",
+      "url": "https://winningwriters.com/our-contests/tom-howard-john-h-reid-fiction-essay-contest",
+      "language": "EN",
+      "topic": "Fiction & essay, open theme",
+      "prize": "$12,000 total ($3,500 each for best fiction and best essay)",
+      "format": "Unpublished and published works both invited",
+      "opens": null,
+      "deadline": "2027-05-01",
+      "reprint_policy": "yes",
+      "reprint_note": "Accepts both previously published and unpublished work.",
+      "fee_free": null,
+      "fee_amount": null,
+      "status": "upcoming"
+    },
+    {
+      "id": "six-word-wonder",
+      "name": "Six Word Wonder",
+      "url": "https://dougweller.net/contest",
+      "language": "EN",
+      "topic": "Ultra-short (six-word) poetry/story format, open theme",
+      "prize": "$96",
+      "format": "Exactly six words per entry",
+      "opens": null,
+      "deadline": "2026-09-30",
+      "reprint_policy": "unclear",
+      "reprint_note": "Not stated in the available listing — verify on the official page before assuming either way.",
+      "fee_free": null,
+      "fee_amount": null,
+      "status": "open"
+    },
+    {
+      "id": "tadpole-press-100-word",
+      "name": "Tadpole Press 100-Word Writing Contest",
+      "url": "https://tadpolepress.com/100-word-writing-contest",
+      "language": "EN",
+      "topic": "100-word flash writing, any theme — judged on \"creativity, uniqueness, and growth\"",
+      "prize": "$1,000 first place",
+      "format": "Exactly 100 words",
+      "opens": null,
+      "deadline": "2026-11-30",
+      "reprint_policy": "unclear",
+      "reprint_note": "Not stated in the available listing — verify on the official page before assuming either way.",
+      "fee_free": false,
+      "fee_amount": "$15",
+      "status": "open"
+    },
+    {
+      "id": "i-matter-contest",
+      "name": "\"I Matter\" Contest",
+      "url": "https://nationalyouthfoundation.org",
+      "language": "EN",
+      "topic": "Self-worth / mental-health-awareness themed writing",
+      "prize": "$250",
+      "format": "Not fully specified in listing — check official page",
+      "opens": null,
+      "deadline": "2026-07-23",
+      "reprint_policy": "unclear",
+      "reprint_note": "Not stated in the available listing — verify on the official page before assuming either way.",
+      "fee_free": true,
+      "fee_amount": null,
+      "status": "closed"
+    },
+    {
+      "id": "chalk-circle-1500",
+      "name": "Chalk Circle 1500",
+      "url": "https://chalkcircle.org.uk/competitions/2026",
+      "language": "EN",
+      "topic": "Short fiction, open theme",
+      "prize": "£200",
+      "format": "Up to 1,500 words",
+      "opens": null,
+      "deadline": "2026-08-31",
+      "reprint_policy": "unclear",
+      "reprint_note": "Not stated in the available listing — verify on the official page before assuming either way.",
+      "fee_free": false,
+      "fee_amount": "$10",
+      "status": "open"
+    },
+    {
+      "id": "bpa-short-story-award",
+      "name": "BPA Short Story Award (Blue Pencil Agency)",
+      "url": "https://bluepencilagency.com/short-story-prize-2026",
+      "language": "EN",
+      "topic": "Short story, open theme",
+      "prize": "£1,000 + literary agent introduction",
+      "format": "For unrepresented writers (no literary agent) only",
+      "opens": null,
+      "deadline": "2026-09-13",
+      "reprint_policy": "unclear",
+      "reprint_note": "Not stated in the available listing — verify on the official page before assuming either way.",
+      "fee_free": false,
+      "fee_amount": "$25",
+      "status": "open"
+    },
+    {
+      "id": "mcneile-writing-competition",
+      "name": "McNeile Writing Competition (Clapham Book Festival)",
+      "url": "https://claphambookfestival.com/competition",
+      "language": "EN",
+      "topic": "Short fiction, open theme",
+      "prize": "£200",
+      "format": "Not fully specified in listing — check official page",
+      "opens": null,
+      "deadline": "2026-09-05",
+      "reprint_policy": "yes",
+      "reprint_note": "Listing states \"unpublished and self-published\" work is eligible — adapting an existing self-published piece appears to be allowed, but confirm on the official page.",
+      "fee_free": false,
+      "fee_amount": "$5",
+      "status": "open"
+    },
+    {
+      "id": "anthology-travel-writing-2026",
+      "name": "Anthology Travel Writing Competition 2026",
+      "url": "https://anthology-magazine.com/awards/travel-writing-competition",
+      "language": "EN",
+      "topic": "Travel experiences with a reflective/personal-narrative angle",
+      "prize": "€300",
+      "format": "Up to 1,000 words",
+      "opens": null,
+      "deadline": "2026-11-30",
+      "reprint_policy": "no",
+      "reprint_note": "Must be original and unpublished.",
+      "fee_free": false,
+      "fee_amount": "$12",
+      "status": "open"
+    },
+    {
+      "id": "anthology-nature-writing-2026",
+      "name": "Anthology Nature Writing Competition 2026",
+      "url": "https://anthology-magazine.com/awards/nature-competition",
+      "language": "EN",
+      "topic": "Environmental / nature storytelling",
+      "prize": "€300",
+      "format": "Up to 1,500 words",
+      "opens": null,
+      "deadline": "2026-09-30",
+      "reprint_policy": "no",
+      "reprint_note": "Must be original and unpublished.",
+      "fee_free": false,
+      "fee_amount": "$15",
+      "status": "open"
+    },
+    {
+      "id": "democracy-school-essay",
+      "name": "Democracy School Essay Competition",
+      "url": "https://teenworldarts.com/competition",
+      "language": "EN",
+      "topic": "Essay connecting the arts to social, political, and historical topics",
+      "prize": "€200",
+      "format": "Not fully specified in listing — check official page",
+      "opens": null,
+      "deadline": "2026-09-01",
+      "reprint_policy": "unclear",
+      "reprint_note": "Not stated in the available listing — verify on the official page before assuming either way.",
+      "fee_free": true,
+      "fee_amount": null,
+      "status": "open"
+    },
+    {
+      "id": "anthology-short-story-2026",
+      "name": "Anthology Short Story Competition 2026",
+      "url": "https://anthology-magazine.com/awards/short-story-competition",
+      "language": "EN",
+      "topic": "Short fiction, open theme",
+      "prize": "$1,000",
+      "format": "Not fully specified in listing — check official page",
+      "opens": null,
+      "deadline": "2026-07-31",
+      "reprint_policy": "no",
+      "reprint_note": "Must be previously unpublished.",
+      "fee_free": false,
+      "fee_amount": "$22",
+      "status": "closed"
+    },
+    {
+      "id": "letter-review-prize",
+      "name": "The Letter Review Prize",
+      "url": "https://letterreview.com/information",
+      "language": "EN",
+      "topic": "International short story prize, open theme",
+      "prize": "$1,000",
+      "format": "Not fully specified in listing — check official page",
+      "opens": null,
+      "deadline": "2026-07-31",
+      "reprint_policy": "unclear",
+      "reprint_note": "Not stated in the available listing — verify on the official page before assuming either way.",
+      "fee_free": false,
+      "fee_amount": "$25",
+      "status": "closed"
+    },
+    {
+      "id": "bridport-prize-2026",
+      "name": "Bridport Prize — Short Story & Poetry",
+      "url": "https://bridportprize.org.uk/",
+      "language": "EN",
+      "topic": "Flagship UK prize — short story (up to 5,000 words) and poetry (up to 42 lines), open theme",
+      "prize": "£5,000 (short story) and £5,000 (poetry), first prize each",
+      "format": "From your wife's own research list. This cycle's deadline has passed — check the official page for the next opening.",
+      "opens": null,
+      "deadline": "2026-05-31",
+      "reprint_policy": "no",
+      "reprint_note": "Entries must be in English and must not have been previously published.",
+      "fee_free": false,
+      "fee_amount": "£13 (poetry) / £15 (short story)",
+      "status": "closed"
+    },
+    {
+      "id": "vancouver-writers-fest-anti-bullying",
+      "name": "Vancouver Writers Fest Anti-Bullying Writing Contest",
+      "url": "https://writersfest.bc.ca",
+      "language": "EN",
+      "topic": "Anti-bullying / empowerment themed writing",
+      "prize": "$200",
+      "format": "Not fully specified in listing — check official page",
+      "opens": null,
+      "deadline": "2026-07-23",
+      "reprint_policy": "unclear",
+      "reprint_note": "Not stated in the available listing — verify on the official page before assuming either way.",
+      "fee_free": true,
+      "fee_amount": null,
+      "status": "closed"
+    },
+    {
+      "id": "vitoshko-lale-2026",
+      "name": "Национален литературен конкурс „Витошко лале“ (33-то издание)",
+      "url": "https://urban-mag.com/%D0%BD%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D0%B5%D0%BD-%D0%BB%D0%B8%D1%82%D0%B5%D1%80%D0%B0%D1%82%D1%83%D1%80%D0%B5%D0%BD-%D0%BA%D0%BE%D0%BD%D0%BA%D1%83%D1%80%D1%81-%D0%B2%D0%B8%D1%82.html",
+      "language": "BG",
+      "topic": "Свободна тема — поезия и проза (разказ, есе, приказка, притча)",
+      "prize": "Not stated in listing (many Bulgarian literary contests award recognition/diplomas rather than cash — verify on organizer page)",
+      "format": "Up to 2 works, free theme, max ~4.5 pages for prose; open to Bulgarian citizens in-country and abroad; adult (19+) category alongside two youth age groups",
+      "opens": null,
+      "deadline": "2026-10-20",
+      "reprint_policy": "unclear",
+      "reprint_note": "Not stated in the available listing — verify on the organizer page before assuming either way.",
+      "fee_free": null,
+      "fee_amount": null,
+      "status": "open"
+    },
+    {
+      "id": "rashko-sugarev-28",
+      "name": "Национален литературен конкурс за къс разказ „Рашко Сугарев“ (28-мо издание)",
+      "url": "https://litdesign-bg.com/konkursen-glas-fevruari-2026-litdizayn/",
+      "language": "BG",
+      "topic": "Къс разказ (short story)",
+      "prize": "Not stated in listing — verify on organizer page",
+      "format": "Authors up to 35 years old only",
+      "opens": null,
+      "deadline": "2026-04-30",
+      "reprint_policy": "yes",
+      "reprint_note": "Unusual direction: this contest REQUIRES stories already published in print, periodical press, or a specialized cultural e-media outlet during 2024–2025 — the opposite of the usual “originals only” rule. Also age-restricted to under 35.",
+      "fee_free": null,
+      "fee_amount": null,
+      "status": "closed"
+    },
+    {
+      "id": "rada-kazaliyska-2026",
+      "name": "Национален литературен конкурс „Рада Казалийска“",
+      "url": "https://litdesign-bg.com/konkursen-glas-fevruari-2026-litdizayn/",
+      "language": "BG",
+      "topic": "Not detailed in listing — verify on organizer page",
+      "prize": "Not stated in listing — verify on organizer page",
+      "format": "Not detailed in listing — verify on organizer page",
+      "opens": "2026-06-03",
+      "deadline": "TBD — check organizer page",
+      "reprint_policy": "unclear",
+      "reprint_note": "Insufficient detail from the aggregator source — verify directly before entering.",
+      "fee_free": null,
+      "fee_amount": null,
+      "status": "open"
+    },
+    {
+      "id": "atanas-lipchev-2026",
+      "name": "XII Национален литературен конкурс за разказ „Атанас Липчев“ (2026)",
+      "url": "https://kulturni-novini.info/sections/7/news/43389-xii-natsionalen-literaturen-konkurs-za-razkaz-atanas-lipchev-2026",
+      "language": "BG",
+      "topic": "Разказ (short story), open theme",
+      "prize": "Not stated in listing — verify on organizer page",
+      "format": "For authors over 18 years old",
+      "opens": "2026-07-10",
+      "deadline": "2026-09-10",
+      "reprint_policy": "unclear",
+      "reprint_note": "Not stated in the available listing — verify on the organizer page before assuming either way.",
+      "fee_free": null,
+      "fee_amount": null,
+      "status": "open"
+    }
+  ]
+}
+</script>
+
+<script>
+(function () {
+  var dataEl = document.getElementById('contest-data');
+  var data = JSON.parse(dataEl.textContent);
+  var contests = data.contests || [];
+
+  document.getElementById('last-updated').textContent = 'Last updated: ' + data.generated_at;
+
+  var filters = { language: 'all', status: 'all', fee: 'all' };
+
+  var REPRINT_LABEL = {
+    yes: 'Adapt OK',
+    no: 'Write fresh',
+    unclear: 'Verify reuse'
+  };
+  var STATUS_LABEL = {
+    open: 'Open',
+    upcoming: 'Upcoming',
+    closed: 'Closed'
+  };
+
+  function parseDate(s) {
+    if (!s) return null;
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(s);
+    if (!m) return null;
+    return new Date(Date.UTC(+m[1], +m[2] - 1, +m[3]));
+  }
+
+  function computeStatus(c) {
+    var deadline = parseDate(c.deadline);
+    var opens = parseDate(c.opens);
+    var today = new Date();
+    if (deadline) {
+      if (deadline < today) return 'closed';
+      if (opens && opens > today) return 'upcoming';
+      return 'open';
+    }
+    return c.status || 'open';
+  }
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function feeLabel(c) {
+    if (c.fee_free === true) return 'Free';
+    if (c.fee_free === false) return c.fee_amount || 'Has a fee (amount not stated)';
+    return 'Not stated — verify on site';
+  }
+
+  function pad2(n) { return (n < 10 ? '0' : '') + n; }
+
+  function buildCalendarUrl(c) {
+    var params = [];
+    params.push('action=TEMPLATE');
+    params.push('text=' + encodeURIComponent('Deadline: ' + c.name));
+    params.push('details=' + encodeURIComponent('Submission deadline for "' + c.name + '". Rules: ' + c.url));
+    var d = parseDate(c.deadline);
+    if (d) {
+      var next = new Date(d.getTime() + 86400000);
+      var fmt = function (dt) {
+        return dt.getUTCFullYear() + pad2(dt.getUTCMonth() + 1) + pad2(dt.getUTCDate());
+      };
+      params.push('dates=' + fmt(d) + '/' + fmt(next));
+    }
+    return 'https://calendar.google.com/calendar/render?' + params.join('&');
+  }
+
+  function renderCard(c) {
+    var status = computeStatus(c);
+    var reprint = c.reprint_policy || 'unclear';
+    return (
+      '<div class="contest-card' + (status === 'closed' ? ' is-closed' : '') + '" data-language="' + escapeHtml(c.language) + '" data-status="' + status + '">' +
+        '<div class="contest-top">' +
+          '<h2><a href="' + escapeHtml(c.url) + '" target="_blank" rel="noopener">' + escapeHtml(c.name) + '</a></h2>' +
+          '<div class="badges">' +
+            '<span class="badge lang">' + escapeHtml(c.language) + '</span>' +
+            '<span class="badge status-' + status + '">' + STATUS_LABEL[status] + '</span>' +
+            '<span class="badge reprint-' + reprint + '">' + REPRINT_LABEL[reprint] + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="contest-meta">' +
+          '<div class="meta-item"><span class="eyebrow">Topic</span><span class="val">' + escapeHtml(c.topic) + '</span></div>' +
+          '<div class="meta-item"><span class="eyebrow">Prize</span><span class="val">' + escapeHtml(c.prize) + '</span></div>' +
+          '<div class="meta-item"><span class="eyebrow">Entry fee</span><span class="val">' + escapeHtml(feeLabel(c)) + '</span></div>' +
+          '<div class="meta-item"><span class="eyebrow">Format</span><span class="val">' + escapeHtml(c.format) + '</span></div>' +
+          '<div class="meta-item"><span class="eyebrow">Deadline</span><span class="val">' + escapeHtml(c.deadline) + (c.opens ? ' <span class="mono" style="color:var(--muted2)">(opens ' + escapeHtml(c.opens) + ')</span>' : '') + '</span></div>' +
+        '</div>' +
+        (c.reprint_note ? '<div class="reprint-note"><strong>Previously published OK?</strong> ' + escapeHtml(c.reprint_note) + '</div>' : '') +
+        '<div class="contest-actions">' +
+          '<a class="action-link" href="' + escapeHtml(buildCalendarUrl(c)) + '" target="_blank" rel="noopener">+ Add to Calendar</a>' +
+          '<a class="action-link" href="https://docs.new/" target="_blank" rel="noopener">Start a draft</a>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  function render() {
+    var filtered = contests.filter(function (c) {
+      var status = computeStatus(c);
+      if (filters.language !== 'all' && c.language !== filters.language) return false;
+      if (filters.status !== 'all' && status !== filters.status) return false;
+      if (filters.fee === 'free' && c.fee_free !== true) return false;
+      return true;
+    });
+
+    var STATUS_RANK = { open: 0, upcoming: 1, closed: 2 };
+    filtered.sort(function (a, b) {
+      var ra = STATUS_RANK[computeStatus(a)];
+      var rb = STATUS_RANK[computeStatus(b)];
+      if (ra !== rb) return ra - rb;
+      var da = parseDate(a.deadline);
+      var db = parseDate(b.deadline);
+      if (!da && !db) return 0;
+      if (!da) return 1;
+      if (!db) return -1;
+      return da - db;
+    });
+
+    var list = document.getElementById('contest-list');
+    list.innerHTML = filtered.map(renderCard).join('');
+    document.getElementById('empty-state').style.display = filtered.length ? 'none' : 'block';
+    document.getElementById('result-count').textContent = filtered.length + ' / ' + contests.length + ' contests';
+  }
+
+  document.querySelectorAll('.control-group').forEach(function (group) {
+    var key = group.getAttribute('data-filter-group');
+    group.querySelectorAll('button').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        group.querySelectorAll('button').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        filters[key] = btn.getAttribute('data-value');
+        render();
+      });
+    });
+  });
+
+  render();
+})();
+</script>
