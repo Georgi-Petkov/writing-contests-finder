@@ -1,22 +1,6 @@
 {
-  "generated_at": "2026-08-01",
+  "generated_at": "2026-08-03",
   "contests": [
-    {
-      "id": "prairie-schooner-cnf-summer-2026",
-      "name": "Prairie Schooner Summer Creative Nonfiction Contest",
-      "url": "https://prairieschooner.unl.edu/submit/creative-nonfiction-summer-essay-contest/",
-      "language": "EN",
-      "topic": "Creative nonfiction essay, open theme",
-      "prize": "$1,000 + publication",
-      "format": "Creative nonfiction essay",
-      "fee_free": false,
-      "fee_amount": "$20",
-      "opens": null,
-      "deadline": "2026-08-01",
-      "reprint_policy": "unclear",
-      "reprint_note": "Not stated in the available listing — verify on the official page before assuming either way.",
-      "status": "open"
-    },
     {
       "id": "derricotte-eady-prize-2026",
       "name": "The Derricotte/Eady Prize",
@@ -47,6 +31,22 @@
       "deadline": "2026-08-14",
       "reprint_policy": "unclear",
       "reprint_note": "Not stated in the available listing — verify on the official page before assuming either way.",
+      "status": "open"
+    },
+    {
+      "id": "todays-christian-living-2026",
+      "name": "Today's Christian Living Annual Writing Contest",
+      "url": "https://todayschristianliving.org/writing-contest/",
+      "language": "EN",
+      "topic": "True, inspirational personal stories of how God has impacted your life",
+      "prize": "1st: $300 + publication; 2nd: $200 + publication; 3rd: $100 + publication",
+      "format": "True personal-narrative submissions with a short author bio and 2-3 photos; see the site's Writer's Guidelines for word count",
+      "fee_free": null,
+      "fee_amount": null,
+      "opens": null,
+      "deadline": "2026-08-14",
+      "reprint_policy": "no",
+      "reprint_note": "Contest rules state all submissions must be previously unpublished and the entrant's own original work (no AI).",
       "status": "open"
     },
     {
@@ -530,6 +530,22 @@
       "status": "open"
     },
     {
+      "id": "rada-kazaliyska-2026",
+      "name": "Национален литературен конкурс „Рада Казалийска“ 2026",
+      "url": "https://chitalishte.info/%D0%BB%D0%B8%D1%82%D0%B5%D1%80%D0%B0%D1%82%D1%83%D1%80%D0%B5%D0%BD-%D0%BA%D0%BE%D0%BD%D0%BA%D1%83%D1%80%D1%81-%D1%80%D0%B0%D0%B4%D0%B0-%D0%BA%D0%B0%D0%B7%D0%B0%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B0-2/",
+      "language": "BG",
+      "topic": "Свободна тема - поезия и проза (разказ/есе), в памет на будителката и поетеса Рада Казалийска",
+      "prize": "I място (поезия и проза) - по 150 евро; II място - по 100 евро; III място - по 50 евро",
+      "format": "Едно стихотворение и/или един разказ до 3 стандартни страници; без възрастови ограничения, отворен за всички",
+      "fee_free": null,
+      "fee_amount": null,
+      "opens": null,
+      "deadline": "2026-09-15",
+      "reprint_policy": "no",
+      "reprint_note": "Регламентът изисква творбите да не са били публикувани преди участието.",
+      "status": "open"
+    },
+    {
       "id": "six-word-wonder",
       "name": "Six Word Wonder",
       "url": "https://dougweller.net/contest",
@@ -578,6 +594,38 @@
       "status": "open"
     },
     {
+      "id": "lascaux-creative-nonfiction-2026",
+      "name": "Lascaux Prize in Creative Nonfiction",
+      "url": "https://lascauxreview.com/submissions/",
+      "language": "EN",
+      "topic": "Creative nonfiction - memoirs, personal essays, humorous perspectives, literary journalism; open theme",
+      "prize": "$1,000, a bronze medallion, and publication in The Lascaux Review",
+      "format": "Up to 10,000 words, nonacademic style",
+      "fee_free": false,
+      "fee_amount": "$15",
+      "opens": null,
+      "deadline": "2026-09-30",
+      "reprint_policy": "yes",
+      "reprint_note": "Rules explicitly state pieces may be previously published or unpublished, and simultaneous submissions are accepted.",
+      "status": "open"
+    },
+    {
+      "id": "boulevard-nonfiction-2026",
+      "name": "Boulevard Nonfiction Contest for Emerging Writers",
+      "url": "https://www.boulevardmagazine.org/nonfiction-contest",
+      "language": "EN",
+      "topic": "Literary nonfiction/personal essay, open theme (especially researched/reported nonfiction, literary journalism, hybrid essays)",
+      "prize": "$1,000 and publication in Boulevard",
+      "format": "Up to 8,000 words; open only to writers who have not yet published a book of fiction, poetry, or creative nonfiction with a nationally distributed press",
+      "fee_free": false,
+      "fee_amount": "$18 (includes a subscription to Boulevard)",
+      "opens": null,
+      "deadline": "2026-09-30",
+      "reprint_policy": "no",
+      "reprint_note": "Simultaneous submissions are allowed, but previously accepted or published work is ineligible.",
+      "status": "open"
+    },
+    {
       "id": "tom-howard-margaret-reid-poetry",
       "name": "Tom Howard/Margaret Reid Poetry Contest (Winning Writers)",
       "url": "https://winningwriters.com/our-contests/tom-howard-margaret-reid-poetry-contest",
@@ -607,6 +655,22 @@
       "reprint_note": "Not stated in the available listing — verify on the organizer page before assuming either way.",
       "fee_free": null,
       "fee_amount": null,
+      "status": "open"
+    },
+    {
+      "id": "vitoshko-lale-2026",
+      "name": "ХХХIII Национален литературен конкурс „Витошко лале“ 2026",
+      "url": "https://urban-mag.com/%D0%BD%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D0%B5%D0%BD-%D0%BB%D0%B8%D1%82%D0%B5%D1%80%D0%B0%D1%82%D1%83%D1%80%D0%B5%D0%BD-%D0%BA%D0%BE%D0%BD%D0%BA%D1%83%D1%80%D1%81-%D0%B2%D0%B8%D1%82.html",
+      "language": "BG",
+      "topic": "Свободна тема - поезия и проза (разказ, есе, приказка, притча), за български граждани от страната и чужбина",
+      "prize": "Не е посочен конкретен паричен фонд в източника; награди по 3 възрастови групи",
+      "format": "До 2 творби на свободна тема; поезия или проза до 4.5 страници; 3 възрастови групи (7-14, 15-19, над 19 г.)",
+      "fee_free": null,
+      "fee_amount": null,
+      "opens": null,
+      "deadline": "2026-10-20",
+      "reprint_policy": "unclear",
+      "reprint_note": "Източникът не посочва изрично политика за преизползвани/публикувани творби за това издание.",
       "status": "open"
     },
     {
@@ -722,6 +786,22 @@
       "status": "open"
     },
     {
+      "id": "faithwriters-challenge",
+      "name": "FaithWriters Writing Challenge",
+      "url": "https://faithwriters.com/writing-challenge-intro.php",
+      "language": "EN",
+      "topic": "Weekly Christian-themed writing challenge: inspirational fiction, poetry, and essays written to a rotating prompt",
+      "prize": "No cash prize; winners are ranked and advance through skill levels (Intermediate/Advanced/etc.); top pieces are compiled into FaithWriters books",
+      "format": "150-750 words per entry; new topic each week (8 topics per quarter with a 2-week break); free Silver membership gives 4 entry credits/quarter, unlimited weekly entry requires a paid Gold/Platinum membership upgrade",
+      "fee_free": true,
+      "fee_amount": null,
+      "opens": null,
+      "deadline": "Ongoing - new topic every week, entries close each Sunday",
+      "reprint_policy": "unclear",
+      "reprint_note": "Entries respond to a fresh weekly prompt but the site does not explicitly state whether adapted or previously-written pieces may be used.",
+      "status": "open"
+    },
+    {
       "id": "wow-women-on-writing-cnf-essay",
       "name": "WOW! Women on Writing — Creative Nonfiction Essay Contest",
       "url": "https://www.wow-womenonwriting.com/contest.php#EssayContest",
@@ -736,6 +816,22 @@
       "fee_free": false,
       "fee_amount": "$12 entry (or $25 with editorial critique)",
       "status": "open"
+    },
+    {
+      "id": "sofia-vitosha-poetry-2026",
+      "name": "Национален конкурс за поезия „В полите на Витоша“ (2026 edition)",
+      "url": "https://www.sofia.bg/w/nacionalen-konkurs-za-poezia-v-polite-na-vitos-5",
+      "language": "BG",
+      "topic": "Анонимен, свободна тема поетичен конкурс, организиран от Столична община",
+      "prize": "Историческо признание/публикуване; конкретен паричен фонд не е посочен в наличните източници",
+      "format": "До 3 непубликувани стихотворения; участници над 18 години; конкурсът е анонимен",
+      "fee_free": null,
+      "fee_amount": null,
+      "opens": null,
+      "deadline": "Not yet announced for 2026 - in recent years the submission window has fallen between spring and mid-October, varying by year",
+      "reprint_policy": "no",
+      "reprint_note": "Rules require poems that have not been previously published.",
+      "status": "upcoming"
     },
     {
       "id": "rashko-sugarev-28",
@@ -770,6 +866,22 @@
       "status": "closed"
     },
     {
+      "id": "asen-raztsvetnikov-2026",
+      "name": "VII Национален литературен конкурс за поезия и проза „Асен Разцветников“",
+      "url": "https://urban-mag.com/%D0%BA%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%8F/%D0%BA%D0%BE%D0%BD%D0%BA%D1%83%D1%80%D1%81%D0%B8.html",
+      "language": "BG",
+      "topic": "Поезия и проза (разказ, пътепис по преживяно, есе), тема свързана с цитат от Асен Разцветников",
+      "prize": "Грамоти и ваучери от книжарница „Хеликон“",
+      "format": "Едно стихотворение до 28 стиха; една прозаична творба (разказ/пътепис/есе) до 4 стр. А4; без такса участие",
+      "fee_free": true,
+      "fee_amount": null,
+      "opens": null,
+      "deadline": "2026-06-30",
+      "reprint_policy": "unclear",
+      "reprint_note": "Източникът не уточнява дали се допускат вече публикувани творби за изданието от 2026 г.",
+      "status": "closed"
+    },
+    {
       "id": "north-street-book-prize",
       "name": "North Street Book Prize (Winning Writers)",
       "url": "https://winningwriters.com/our-contests/north-street-book-prize",
@@ -783,6 +895,38 @@
       "reprint_note": "This one is specifically FOR previously published (self-published/hybrid) books — not a reuse allowance for unpublished writers.",
       "fee_free": false,
       "fee_amount": "$95",
+      "status": "closed"
+    },
+    {
+      "id": "amy-macrae-memoir-2026",
+      "name": "International Amy MacRae Award for Memoir 2026",
+      "url": "https://www.alisonwearing.com/amy-award",
+      "language": "EN",
+      "topic": "Personal memoir writing, created in memory of Amy MacRae to support ovarian cancer research/awareness",
+      "prize": "CAD $1,000",
+      "format": "Up to 2,000 words; open to writers worldwide",
+      "fee_free": false,
+      "fee_amount": "CAD $25",
+      "opens": "2026-04-15",
+      "deadline": "2026-07-01",
+      "reprint_policy": "no",
+      "reprint_note": "Only original, unpublished memoir writing is eligible; simultaneously-submitted work elsewhere is not allowed.",
+      "status": "closed"
+    },
+    {
+      "id": "bnr-esse-bulgari-chuzhbina-2026",
+      "name": "БНР - Конкурс за есе за ученици и студенти от българските общности в чужбина",
+      "url": "https://bnr.bg/about-us/post/494786/konkurs-za-ese-za-studenti-i-uchenitsi-ot-balgarskite-obshtnosti-v-chuzhbina-obyavi-bnr",
+      "language": "BG",
+      "topic": "Есе на тема българска идентичност/единство ('Каква кауза може да обедини българите по света?' и др.)",
+      "prize": "Не е посочена парична награда в източника; признание/отразяване от БНР",
+      "format": "Есе до 5000 знака на книжовен български език, по една от две зададени теми; за ученици и студенти от българските общности в чужбина",
+      "fee_free": null,
+      "fee_amount": null,
+      "opens": null,
+      "deadline": "2026-07-15",
+      "reprint_policy": "unclear",
+      "reprint_note": "Обявата не посочва изрично дали се допускат преизползвани или вече публикувани текстове.",
       "status": "closed"
     },
     {
@@ -847,6 +991,22 @@
       "reprint_note": "Not stated in the available listing — verify on the official page before assuming either way.",
       "fee_free": false,
       "fee_amount": "$25",
+      "status": "closed"
+    },
+    {
+      "id": "prairie-schooner-cnf-summer-2026",
+      "name": "Prairie Schooner Summer Creative Nonfiction Contest",
+      "url": "https://prairieschooner.unl.edu/submit/creative-nonfiction-summer-essay-contest/",
+      "language": "EN",
+      "topic": "Creative nonfiction essay, open theme",
+      "prize": "$1,000 + publication",
+      "format": "Creative nonfiction essay",
+      "fee_free": false,
+      "fee_amount": "$20",
+      "opens": null,
+      "deadline": "2026-08-01",
+      "reprint_policy": "unclear",
+      "reprint_note": "Not stated in the available listing — verify on the official page before assuming either way.",
       "status": "closed"
     }
   ]
