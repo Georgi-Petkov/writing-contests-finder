@@ -37,4 +37,21 @@ resource "azurerm_static_web_app" "site" {
   sku_size = "Free"
 
   tags = var.tags
+
+  lifecycle {
+    ignore_changes = [repository_branch, repository_url]
+
+    precondition {
+      condition = contains(
+        ["westus2", "centralus", "eastus2", "westeurope", "eastasia"],
+        lower(var.location)
+      )
+      error_message = "Static Web Apps Free tier isn't available in ${var.location}. Pick a region from the supported list before applying."
+    }
+
+    postcondition {
+      condition     = self.sku_tier == "Free" && self.sku_size == "Free"
+      error_message = "azurerm_static_web_app did not come back on the Free SKU — check for provider drift or a config mistake before this goes further."
+    }
+  }
 }
