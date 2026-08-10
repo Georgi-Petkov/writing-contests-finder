@@ -1,22 +1,6 @@
 {
-  "generated_at": "2026-08-03",
+  "generated_at": "2026-08-10",
   "contests": [
-    {
-      "id": "derricotte-eady-prize-2026",
-      "name": "The Derricotte/Eady Prize",
-      "url": "https://cavecanempoets.org/programs/#derricotte-eady-chapbook-prize",
-      "language": "EN",
-      "topic": "Poetry chapbook",
-      "prize": "$1,000 + residency",
-      "format": "Chapbook manuscript, 25–30 pages; open to Black poets only",
-      "fee_free": true,
-      "fee_amount": null,
-      "opens": null,
-      "deadline": "2026-08-07",
-      "reprint_policy": "unclear",
-      "reprint_note": "Not stated in the available listing — verify on the official page before assuming either way.",
-      "status": "open"
-    },
     {
       "id": "waterford-poetry-prize-2026",
       "name": "Waterford Poetry Prize",
@@ -338,6 +322,22 @@
       "status": "open"
     },
     {
+      "id": "wow-summer-flash-fiction-2026",
+      "name": "WOW! Women on Writing Summer 2026 Flash Fiction Contest",
+      "url": "https://www.wow-womenonwriting.com/contest.php",
+      "language": "EN",
+      "topic": "Open-theme flash fiction, any genre — easily adaptable to an uplifting/inspirational short narrative",
+      "prize": "$1,350 total in cash prizes across 20 winners (1st $400 + publication + interview + $25 gift card, 2nd $300, 3rd $200, plus runners-up)",
+      "format": "Flash fiction of 250–750 words, any genre, open internationally; optional paid critique available",
+      "fee_free": false,
+      "fee_amount": "$10 entry fee; optional critique for an additional $10",
+      "opens": null,
+      "deadline": "2026-08-31",
+      "reprint_policy": "yes",
+      "reprint_note": "Third-party listings (e.g. The Loft Literary Center) note that reprints/previously published work are okay for this WOW! flash fiction contest, so existing pieces can be adapted or reused.",
+      "status": "open"
+    },
+    {
       "id": "democracy-school-essay",
       "name": "Democracy School Essay Competition",
       "url": "https://teenworldarts.com/competition",
@@ -450,6 +450,22 @@
       "status": "open"
     },
     {
+      "id": "terrain-org-17th-annual-2026",
+      "name": "Terrain.org 17th Annual Contest in Poetry, Nonfiction, and Fiction",
+      "url": "https://www.terrain.org/submit/contest-guidelines/",
+      "language": "EN",
+      "topic": "Place, nature, environmental and social/climate justice themes across poetry, nonfiction and fiction — adaptable to inspirational nature/personal-transformation writing",
+      "prize": "$1,000 grand prize in each of three genres (poetry, nonfiction, fiction) and $200 to finalists; total prize pool over $5,000",
+      "format": "Submissions accepted May 1 through Labor Day (Sept 7, 2026); essay/article length varies by genre (e.g. flash essay sets of two); open to new and experienced writers",
+      "fee_free": false,
+      "fee_amount": "$20 per entry (per essay/article, or per set of 2 flash essays, or per poetry submission)",
+      "opens": "2026-05-01",
+      "deadline": "2026-09-07",
+      "reprint_policy": "no",
+      "reprint_note": "Terrain.org's submission and contest guidelines state they do not accept previously published material in any format, including blogs or social media.",
+      "status": "open"
+    },
+    {
       "id": "atanas-lipchev-2026",
       "name": "XII Национален литературен конкурс за разказ „Атанас Липчев“ (2026)",
       "url": "https://kulturni-novini.info/sections/7/news/43389-xii-natsionalen-literaturen-konkurs-za-razkaz-atanas-lipchev-2026",
@@ -532,17 +548,17 @@
     {
       "id": "rada-kazaliyska-2026",
       "name": "Национален литературен конкурс „Рада Казалийска“ 2026",
-      "url": "https://chitalishte.info/%D0%BB%D0%B8%D1%82%D0%B5%D1%80%D0%B0%D1%82%D1%83%D1%80%D0%B5%D0%BD-%D0%BA%D0%BE%D0%BD%D0%BA%D1%83%D1%80%D1%81-%D1%80%D0%B0%D0%B4%D0%B0-%D0%BA%D0%B0%D0%B7%D0%B0%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B0-2/",
+      "url": "https://konkurs-bg.com/products",
       "language": "BG",
-      "topic": "Свободна тема - поезия и проза (разказ/есе), в памет на будителката и поетеса Рада Казалийска",
-      "prize": "I място (поезия и проза) - по 150 евро; II място - по 100 евро; III място - по 50 евро",
-      "format": "Едно стихотворение и/или един разказ до 3 стандартни страници; без възрастови ограничения, отворен за всички",
+      "topic": "Free/open theme poetry and prose (essay or short story), in memory of Rada Kazaliyska, the first Bulgarian female teacher and poetess",
+      "prize": "Not specified in the announcement (typical of community reading-house contests, likely a certificate/modest recognition rather than a cash prize)",
+      "format": "One poem and/or one short story, up to 3 standard printed pages (Times New Roman 12); free theme; no stated age restriction for 2026, though past editions were limited to non-professional women authors — eligibility scope for 2026 is not fully clear",
       "fee_free": null,
       "fee_amount": null,
-      "opens": null,
+      "opens": "2026-06-03",
       "deadline": "2026-09-15",
       "reprint_policy": "no",
-      "reprint_note": "Регламентът изисква творбите да не са били публикувани преди участието.",
+      "reprint_note": "The 2026 regulation explicitly states works must not have been previously published and must not have taken part in earlier editions of the contest.",
       "status": "open"
     },
     {
@@ -642,6 +658,22 @@
       "status": "open"
     },
     {
+      "id": "gabriele-rico-nonfiction-2026",
+      "name": "Gabriele Rico Challenge for Nonfiction",
+      "url": "https://www.reedmag.org/gabriele-rico-challenge-for-nonfict",
+      "language": "EN",
+      "topic": "Creative nonfiction / personal essay — stand-alone personal essays and narratives, any subject",
+      "prize": "$1,333 cash prize to the winning author, plus a copy of Reed Magazine",
+      "format": "Stand-alone creative nonfiction (personal essays/narratives, not scholarly papers or book reviews), up to 5,000 words; open internationally; no stated age restriction; reading period runs June 1–Oct 1",
+      "fee_free": false,
+      "fee_amount": "$20–$25 (fee varies slightly by submission month; includes a copy of the magazine)",
+      "opens": "2026-06-01",
+      "deadline": "2026-10-01",
+      "reprint_policy": "no",
+      "reprint_note": "Reed Magazine's contest guidelines explicitly state they do not accept previously published work; only original, unpublished essays are eligible.",
+      "status": "open"
+    },
+    {
       "id": "vitoshko-lale-2026",
       "name": "Национален литературен конкурс „Витошко лале“ (33-то издание)",
       "url": "https://urban-mag.com/%D0%BD%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D0%B5%D0%BD-%D0%BB%D0%B8%D1%82%D0%B5%D1%80%D0%B0%D1%82%D1%83%D1%80%D0%B5%D0%BD-%D0%BA%D0%BE%D0%BD%D0%BA%D1%83%D1%80%D1%81-%D0%B2%D0%B8%D1%82.html",
@@ -662,15 +694,15 @@
       "name": "ХХХIII Национален литературен конкурс „Витошко лале“ 2026",
       "url": "https://urban-mag.com/%D0%BD%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D0%B5%D0%BD-%D0%BB%D0%B8%D1%82%D0%B5%D1%80%D0%B0%D1%82%D1%83%D1%80%D0%B5%D0%BD-%D0%BA%D0%BE%D0%BD%D0%BA%D1%83%D1%80%D1%81-%D0%B2%D0%B8%D1%82.html",
       "language": "BG",
-      "topic": "Свободна тема - поезия и проза (разказ, есе, приказка, притча), за български граждани от страната и чужбина",
-      "prize": "Не е посочен конкретен паричен фонд в източника; награди по 3 възрастови групи",
-      "format": "До 2 творби на свободна тема; поезия или проза до 4.5 страници; 3 възрастови групи (7-14, 15-19, над 19 г.)",
+      "topic": "Free/open theme poetry and prose (short story, essay, fairy tale, parable) — organized by the Bratya Miladinovi-1917 reading house in Knyazhevo, Sofia",
+      "prize": "Not specified in the announcement (typical small prizes/certificates for this long-running community reading-house contest)",
+      "format": "Up to 2 works per author, free theme, poetry or prose (story/essay/fairy tale/parable) up to 4.5 printed pages; open to Bulgarian citizens in the country and abroad, in 3 age groups (7–14, 15–19, and 19+)",
       "fee_free": null,
       "fee_amount": null,
       "opens": null,
       "deadline": "2026-10-20",
       "reprint_policy": "unclear",
-      "reprint_note": "Източникът не посочва изрично политика за преизползвани/публикувани творби за това издание.",
+      "reprint_note": "None of the available announcements state whether previously published work is allowed or excluded, so this is not stated either way.",
       "status": "open"
     },
     {
@@ -687,6 +719,22 @@
       "deadline": "2026-10-31",
       "reprint_policy": "unclear",
       "reprint_note": "Not stated in the available listing — verify on the organizer page before assuming either way.",
+      "status": "open"
+    },
+    {
+      "id": "hope-prize-2026",
+      "name": "The Hope Prize 2026",
+      "url": "https://www.thehopeprize.com/guidelines",
+      "language": "EN",
+      "topic": "Hope, courage and resilience — short fiction or creative nonfiction exploring the human experience through these themes",
+      "prize": "$13,000 AUD prize pool: 1st $10,000 AUD, 2nd $2,000 AUD, 3rd $1,000 AUD, plus international publication with Simon & Schuster Australia and inclusion in a charity anthology",
+      "format": "Fiction or creative nonfiction, 2,000–5,000 words, on the theme of hope, courage or resilience; writers must be 18+; open worldwide, no geographic restriction",
+      "fee_free": false,
+      "fee_amount": "Standard fee $33 AUD (Aug 1–Oct 31, 2026); early-bird $25 AUD window (through July 31) has already closed",
+      "opens": null,
+      "deadline": "2026-10-31",
+      "reprint_policy": "no",
+      "reprint_note": "The official guidelines state 'We only accept previously unpublished work,' so reused/previously published pieces are not eligible.",
       "status": "open"
     },
     {
@@ -1005,6 +1053,22 @@
       "fee_amount": "$20",
       "opens": null,
       "deadline": "2026-08-01",
+      "reprint_policy": "unclear",
+      "reprint_note": "Not stated in the available listing — verify on the official page before assuming either way.",
+      "status": "closed"
+    },
+    {
+      "id": "derricotte-eady-prize-2026",
+      "name": "The Derricotte/Eady Prize",
+      "url": "https://cavecanempoets.org/programs/#derricotte-eady-chapbook-prize",
+      "language": "EN",
+      "topic": "Poetry chapbook",
+      "prize": "$1,000 + residency",
+      "format": "Chapbook manuscript, 25–30 pages; open to Black poets only",
+      "fee_free": true,
+      "fee_amount": null,
+      "opens": null,
+      "deadline": "2026-08-07",
       "reprint_policy": "unclear",
       "reprint_note": "Not stated in the available listing — verify on the official page before assuming either way.",
       "status": "closed"
