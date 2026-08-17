@@ -2,10 +2,9 @@ name: Refresh contest data
 
 on:
   schedule:
-    # TEMPORARY: one-off test trigger at 10:43 UTC on 2026-08-17 to verify the
-    # Anthropic credit top-up fixed the automated refresh. Revert to the
-    # regular weekly schedule after this fires.
-    - cron: "43 10 * * 1"
+    # Weekly, Monday ~07:13 UTC (off the hour to avoid every scheduled job on
+    # GitHub landing at the same instant).
+    - cron: "13 7 * * 1"
   workflow_dispatch: {}
 
 permissions:
