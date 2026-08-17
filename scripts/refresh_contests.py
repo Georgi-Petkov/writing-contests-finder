@@ -132,15 +132,25 @@ them entirely). Skip anything long expired with no sign of a recurring next edit
 """
 
 
-def build_user_prompt(existing_contests: list[dict]) -> str:
-    existing_urls = sorted({c["url"] for c in existing_contests if c.get("url")})
+def build_user_prompt(existing_contests: list[dict], language: str) -> str:
+    existing_urls = sorted(
+        {c["url"] for c in existing_contests if c.get("url") and c.get("language") == language}
+    )
+    scope = (
+        "English-language sources (Reedsy, Poets & Writers, Winning Writers, the "
+        '"Writing Deadlines" Substack, freedomwithwriting.com)'
+        if language == "EN"
+        else "Bulgarian-language sources (konkurs-bg.com, litdesign-bg.com's "
+        '"Конкурсен глас" roundups, bukvite.bg, Bulgarian читалища and cultural foundations)'
+    )
     return (
-        "Here are the contest URLs already in the tracker (for context — search for "
-        "NEW or UPDATED contests, you don't need to re-report ones that haven't changed):\n"
+        f"Here are the {language} contest URLs already in the tracker (for context — "
+        "search for NEW or UPDATED contests, you don't need to re-report ones that "
+        "haven't changed):\n"
         + "\n".join(f"- {u}" for u in existing_urls)
-        + "\n\nSearch for open, upcoming, and recently-closed inspirational-writing "
-        "contests in English and Bulgarian. Report every contest you find (new ones "
-        "and any of the above whose details have changed) as structured output."
+        + f"\n\nSearch {scope} for open, upcoming, and recently-closed inspirational-writing "
+        f"contests in {language}. Report every contest you find (new ones and any of the "
+        "above whose details have changed) as structured output."
     )
 
 
@@ -182,39 +192,51 @@ def recompute_status(contest: dict, today: date) -> str:
     return "open"
 
 
-def fetch_new_contests(existing_contests: list[dict]) -> list[dict]:
+MAX_SEARCHES_PER_LANGUAGE = 10
+
+
+def fetch_new_contests(existing_contests: list[dict], language: str) -> list[dict]:
     client = anthropic.Anthropic()
+    # Cached: identical across the EN and BG calls, and across weekly runs within
+    # the cache TTL, so it's billed once instead of on every turn of the search loop.
+    system = [{"type": "text", "text": SYSTEM_PROMPT, "cache_control": {"type": "ephemeral"}}]
+    tools = [
+        {
+            "type": "web_search_20260209",
+            "name": "web_search",
+            "max_uses": MAX_SEARCHES_PER_LANGUAGE,
+        }
+    ]
+    messages = [{"role": "user", "content": build_user_prompt(existing_contests, language)}]
+
     response = client.messages.create(
         model=MODEL,
         max_tokens=16000,
-        system=SYSTEM_PROMPT,
-        tools=[{"type": "web_search_20260209", "name": "web_search"}],
+        system=system,
+        tools=tools,
         output_config={"format": {"type": "json_schema", "schema": CONTEST_SCHEMA}},
-        messages=[{"role": "user", "content": build_user_prompt(existing_contests)}],
+        messages=messages,
     )
 
     if response.stop_reason == "refusal":
-        print("Model declined the request; keeping existing data unchanged.", file=sys.stderr)
+        print(f"Model declined the {language} request; skipping.", file=sys.stderr)
         return []
 
     if response.stop_reason == "pause_turn":
-        # Server-side web search hit its iteration cap; resume once.
-        follow_up = client.messages.create(
+        # Hit the search cap mid-turn; resume once to let it finish reporting.
+        messages.append({"role": "assistant", "content": response.content})
+        response = client.messages.create(
             model=MODEL,
             max_tokens=16000,
-            system=SYSTEM_PROMPT,
-            tools=[{"type": "web_search_20260209", "name": "web_search"}],
+            system=system,
+            tools=tools,
             output_config={"format": {"type": "json_schema", "schema": CONTEST_SCHEMA}},
-            messages=[
-                {"role": "user", "content": build_user_prompt(existing_contests)},
-                {"role": "assistant", "content": response.content},
-            ],
+            messages=messages,
         )
-        response = follow_up
 
     text = next((b.text for b in response.content if b.type == "text"), None)
     if not text:
-        print("No structured output returned; keeping existing data unchanged.", file=sys.stderr)
+        print(f"No structured output returned for {language}; skipping.", file=sys.stderr)
         return []
 
     parsed = json.loads(text)
@@ -265,12 +287,27 @@ def regenerate_index_html(payload: dict) -> None:
 
 
 def main() -> None:
-    existing = json.loads(DATA_PATH.read_text(encoding="utf-8"))["contests"]
-    found = fetch_new_contests(existing)
-    merged = merge_contests(existing, found)
-    payload = write_data_file(merged)
-    regenerate_index_html(payload)
-    print(f"Wrote {len(merged)} contests ({len(found)} newly found/updated this run).")
+    merged = json.loads(DATA_PATH.read_text(encoding="utf-8"))["contests"]
+    any_succeeded = False
+
+    # One call per language, writing to disk after each, so a mid-run failure
+    # (credit exhaustion, timeout, etc.) still commits/deploys whatever the
+    # earlier call(s) found instead of discarding all of it.
+    for language in ("EN", "BG"):
+        try:
+            found = fetch_new_contests(merged, language)
+        except Exception as exc:  # noqa: BLE001 - keep whatever the other language found
+            print(f"{language} search failed: {exc}", file=sys.stderr)
+            continue
+
+        any_succeeded = True
+        merged = merge_contests(merged, found)
+        payload = write_data_file(merged)
+        regenerate_index_html(payload)
+        print(f"[{language}] wrote {len(merged)} contests ({len(found)} newly found/updated).")
+
+    if not any_succeeded:
+        sys.exit(1)
 
 
 if __name__ == "__main__":
